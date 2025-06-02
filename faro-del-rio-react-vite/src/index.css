@@ -1,0 +1,83 @@
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos base personalizados */
+@layer base {
+  html {
+    @apply scroll-smooth; /* Desplazamiento suave para anclas */
+  }
+
+  body {
+    @apply font-sans text-brand-gray-dark bg-brand-gray-lightest antialiased;
+    /* 'antialiased' mejora la legibilidad de la fuente */
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-brand-blue; /* Color base para encabezados */
+  }
+
+  /* Estilo para la selección de texto */
+  ::selection {
+    @apply bg-brand-green text-white;
+  }
+  ::-moz-selection { /* Firefox */
+    @apply bg-brand-green text-white;
+  }
+}
+
+/* Componentes personalizados reutilizables (Ejemplos) */
+@layer components {
+  .section-padding {
+    @apply py-16 md:py-20 lg:py-24; /* Espaciado vertical estándar para secciones */
+  }
+
+  .section-title {
+    @apply text-3xl sm:text-4xl font-bold mb-3 text-center;
+  }
+  .section-subtitle {
+    @apply text-lg text-brand-gray-DEFAULT mb-10 md:mb-12 max-w-2xl mx-auto text-center;
+  }
+}
+
+/* Scrollbar personalizada (opcional, para un toque más moderno) */
+/* Webkit (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-brand-gray-light;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-brand-gray-DEFAULT;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-brand-gray-dark;
+}
+
+/* Firefox (más limitado) */
+/* body {
+  scrollbar-width: thin;
+  scrollbar-color: theme('colors.brand-gray.DEFAULT') theme('colors.brand-gray.light');
+} */
+
+/* Clases para animaciones de entrada con Intersection Observer (si se usan) */
+/* Si bien definimos keyframes en tailwind.config, podrías necesitar clases de utilidad así */
+.is-intersecting {
+  /* Esta clase se añadiría con JS cuando el elemento es visible */
+}
+
+.fade-in-on-scroll {
+  opacity: 0;
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  transform: translateY(20px); /* o translateX, etc. */
+}
+
+.fade-in-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
